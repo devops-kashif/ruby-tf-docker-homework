@@ -4,6 +4,8 @@
 
 - Terraform
 - AWS CLI
+- AWS KeyPair to be created and changed in the configuration
+- Downloaded .PEM file need to be in root of the project
 
 ## Configuration
 
@@ -14,13 +16,14 @@ aws_access_key="AKIAJRTXSXXXXXXXXXXXX"
 aws_secret_key="XXXXXXXXXXXX2XmMQmYl46jOxvXXXX"
 region="us-east-2"
 availability_zone="us-east-2a"
-public_key="ssh-rsa AAAAB3NzXXXXXXXXXXXX63CqgA10eKaXXXXXXXXXXXXIiSOA14aQOtDvEZpuyRGOYdPnzxhGqEn3q7/8mk8yqvqHU1IBn6wEzV7VRCydk081V5BqqQcEKcfJ+DXXXXXXXXXXXXuehqpBbSMZCASVhLVIFrLuXXXXXXXXXXXXzpdMsstrw91cRR77xOExR9klaNpmnkzP+FxYpGJ8xXXXXXXXXXXXXyYqHFRI7Ov6fqP9GwSVFJR5axvHApsX devops.kashif@gmail.com"
 rds_user="foo"
 rds_pass="foobarbaaz"
 rds_version="10.3"
 rds_storage_type="gp2"
 rds_storage_capacity="5"
 ```
+
+Other relevant configuration will be asked on Runtime.
 
 ## Run
 
