@@ -23,7 +23,9 @@ resource "aws_instance" "redmine" {
                   inline = [ "sudo yum install -y docker",
                             "sudo service docker start",
                             "sudo chkconfig docker on",
-                            "docker run -d --name redmine-container -e REDMINE_DB_POSTGRES=${aws_db_instance.redmine.address} -e REDMINE_DB_PORT=${aws_db_instance.redmine.port} -e REDMINE_DB_USERNAME=${var.rds_user} -e REDMINE_DB_PASSWORD=${var.rds_pass} -e REDMINE_DB_DATABASE=redmine -p 3000:3000 --restart=always redmine"
+                            "sudo groupadd docker",
+                            "sudo usermod -aG docker ec2-user",
+                            "sudo docker run -d --name redmine-container -e REDMINE_DB_POSTGRES=${aws_db_instance.redmine.address} -e REDMINE_DB_PORT=${aws_db_instance.redmine.port} -e REDMINE_DB_USERNAME=${var.rds_user} -e REDMINE_DB_PASSWORD=${var.rds_pass} -e REDMINE_DB_DATABASE=redmine -p 3000:3000 --restart=always redmine"
                             ]
           }
       }

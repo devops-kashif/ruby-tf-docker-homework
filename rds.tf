@@ -7,4 +7,15 @@ resource "aws_db_instance" "redmine" {
   name                 = "redmine"
   username             = "${var.rds_user}"
   password             = "${var.rds_pass}"
+  skip_final_snapshot  = true
+}
+
+
+resource "aws_db_subnet_group" "redmine" {
+  name       = "redmine"
+  subnet_ids = ["${aws_security_group.redmine.id}"]
+
+  tags {
+    Name = "Redmine DB subnet group"
+  }
 }
