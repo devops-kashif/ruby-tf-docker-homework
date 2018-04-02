@@ -34,7 +34,7 @@ resource "aws_security_group" "redmine" {
   ingress {
     from_port   = 3000
     to_port     = 3000
-    protocol    = "-1"
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
@@ -49,6 +49,5 @@ resource "aws_security_group" "redmine" {
     to_port         = 0
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
-    prefix_list_ids = ["pl-12c4e678"]
   }
 }

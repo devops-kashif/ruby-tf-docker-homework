@@ -11,14 +11,18 @@ resource "aws_instance" "redmine" {
 
     availability_zone = "${var.availability_zone}"
     vpc_security_group_ids = ["${aws_security_group.redmine.id}"]
-    key_name = "my-key"
-    public_key = "${var.public_key}"
+    key_name = "test"
+
+    connection {
+       type = "ssh"
+       user = "ec2-user"
+       private_key = "${file("./keys/test.pem")}"
+    }
 
     provisioner "remote-exec" {
-                  inline = [ "wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.03.0.ce-1.el7.centos.x86_64.rpm",
-                            "sudo yum install docker-ce-18.03.0.ce-1.el7.centos.x86_64.rpm",
-                            "sudo systemctl start docker",
-                            "sudo groupadd docker",
-                            "sudo usermod -aG docker $USER"]
+                  inline = [ "sudo yum install -y docker",
+                            "sudo service docker restart",
+                            "sudo chkconfig docker on"
+                            ]
           }
       }
