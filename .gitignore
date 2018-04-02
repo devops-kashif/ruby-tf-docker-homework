@@ -3,3 +3,5 @@ terraform.tfvars
 .DS_Store
 terraform.tfstate
 terraform.tfstate.backup
+terraform.tfstate.lock.info
+keys/
