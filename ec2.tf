@@ -10,12 +10,12 @@ resource "aws_instance" "redmine" {
 
     availability_zone = "${var.availability_zone}"
     vpc_security_group_ids = ["${aws_security_group.redmine.id}"]
-    key_name = "test"
+    key_name = "${var.key_name}"
 
     connection {
        type = "ssh"
        user = "ec2-user"
-       private_key = "${file("./keys/test.pem")}"
+       private_key = "${file("./test.pem")}"
     }
 
     provisioner "remote-exec" {
