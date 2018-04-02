@@ -3,11 +3,6 @@ resource "aws_vpc" "redmine" {
   enable_dns_hostnames = true
 }
 
-resource "aws_subnet" "redmine" {
-  vpc_id = "${aws_vpc.redmine.id}"
-  cidr_block = "10.43.0.0/16"
-  availability_zone = "${var.availability_zone}"
-}
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.redmine.id}"
@@ -22,7 +17,7 @@ resource "aws_route_table" "redmine" {
 }
 
 resource "aws_route_table_association" "redmine" {
-  subnet_id = "${aws_subnet.redmine.id}"
+  subnet_id = "${aws_subnet.subnet_1.id}"
   route_table_id = "${aws_route_table.redmine.id}"
 }
 
@@ -42,6 +37,13 @@ resource "aws_security_group" "redmine" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["10.43.0.0/16"]
   }
 
   egress {

@@ -5,8 +5,7 @@ resource "aws_instance" "redmine" {
     tags {
         Name = "redmine"
       }
-    subnet_id = "${aws_subnet.redmine.id}"
-    private_ip = "${cidrhost("10.43.0.0/16", 10 + count.index)}"
+    subnet_id = "${aws_subnet.subnet_1.id}"
     associate_public_ip_address = true
 
     availability_zone = "${var.availability_zone}"
