@@ -1,4 +1,4 @@
-aws_access_key="YouShouldntPutThisHere"
+aws_access_key="YouShouldRotateTheseKeysNow"
 aws_secret_key="ThisNeedsToBeSecret"
 region="us-east-2"
 availability_zone="us-east-2a"
